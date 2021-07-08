@@ -14,8 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(resultCode == RESULT_OK){
-            val message = data?.getStringExtra("returnValue")
-            Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+            when(requestCode){
+                99 -> {
+                    val message = data?.getStringExtra("returnValue")
+                    Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SubActivity::class.java)
         intent.putExtra("from1","Hello Bundle")
         intent.putExtra("from2", 2021)
-        binding.btnStart.setOnClickListener { startActivity(intent) }
+        binding.btnStart.setOnClickListener { startActivityForResult(intent, 99) }
 
     }
 }
