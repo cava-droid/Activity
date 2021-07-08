@@ -26,7 +26,10 @@ class SubActivity : AppCompatActivity() {
         binding.to2.text = "${intent.getIntExtra("from2", 0)}"
 
         binding.btnClose.setOnClickListener {
-
+            val returnIntent = Intent()
+            returnIntent.putExtra("retrunValue",binding.editMessage.text.toString())
+            setResult(RESULT_OK, returnIntent)
+            finish()
         }
 
         val returnIntent = Intent()
