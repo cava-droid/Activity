@@ -9,7 +9,9 @@ import com.asknsolve.activity.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val binding by lazy {ActivityMainBinding.inflate(layoutInflater)}
+    val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
@@ -24,13 +26,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-//    val getAction = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-//        if(it.resultCode == RESULT_OK){
-//            // There are no request Codes
-//            val message = it.data?.getStringExtra("returnValue")
-//            Toast.makeText(this,message,Toast.LENGTH_LONG).show()
-//        }
-//    }
+    val getAction = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == RESULT_OK){
+            // There are no request Codes
+            val message = it.data?.getStringExtra("returnValue")
+            Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("from1","Hello Bundle")
         intent.putExtra("from2", 2021)
         binding.btnStart.setOnClickListener {
-            startActivity(intent)
+//            startActivity(intent)
 //          startActivityForResult(intent, 99)
-//            getAction.launch(intent)
+            getAction.launch(intent)
         }
 
     }
